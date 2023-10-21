@@ -39,7 +39,14 @@ def checkcol(man,fel):
        return True
     else:
        return False
-
+def checkhit(b,fel):
+  enemy = pygame.Rect(fel.x,fel.y,32,32)
+  bullet = pygame.Rect(b.x,b.y,b.size,b.size)
+  hit = bullet.colliderect(enemy)
+  if hit:
+     return True
+  else:
+     return False
 while running:
     # Poll events
     for event in pygame.event.get():
@@ -76,6 +83,11 @@ while running:
        bullets.append(gun.Bullet(screen,manolo.pos[0]+manolo.size[0]/2, manolo.pos[1]+manolo.size[1]/2, mira.x, mira.y, 20 , 10))
        lastShot = pygame.time.get_ticks()
     for b in bullets:
+        for f in felipes:
+           if checkhit(b,f):
+              bullets.remove(b)
+              felipes.remove(f)
+              break
         if b.exist():
            b.show()
            b.move()
