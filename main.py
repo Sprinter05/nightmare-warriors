@@ -21,7 +21,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("black") # Clear Screen
+    screen.fill("white") # Clear Screen
     # Gun stuff
     mira.display()
     # Something
