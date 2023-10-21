@@ -1,6 +1,7 @@
 # Example file showing a circle moving on screen
 import pygame
 import gun
+
 # import manolo
 
 # pygame setup
@@ -13,7 +14,7 @@ running = True
 deltaTime = 0
 
 # manolo.init(screen)
-enemigo.init(3)
+enemigo.init(screen, 3)
 # Define objects
 mira = gun.Pointer(screen, pygame.Color(255,0,0), pygame.Rect(0,0,200,200),5)
 
