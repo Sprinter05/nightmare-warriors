@@ -39,3 +39,5 @@ class enemy:
         if rect.top < 0 or rect.bottom > 720:
             self.speed[1] = -self.speed[1]
         rect.move_ip((self.speed[0], self.speed[1]))
+
+    

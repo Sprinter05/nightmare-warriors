@@ -24,7 +24,12 @@ radius = 200
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
 mira = gun.Pointer(screen, gun.gColor, 0, 0, gun.gSize ,gun.gWidth)
 bullets = []
-Felipe = enemy.enemy(screen,(0,0,255),500,500)
+felipes = []
+for f in range(0,20):
+  felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+
+
+
 
 while running:
     # Poll events
@@ -66,7 +71,8 @@ while running:
         else:      
            bullets.remove(b)
     # Felipe
-    Felipe.draw(manolo.pos[0],manolo.pos[1],screen)
+    for f in felipes:
+      f.draw(manolo.pos[0],manolo.pos[1],screen)
     # Flip and deltaTime garbage
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
