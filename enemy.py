@@ -1,13 +1,21 @@
 import pygame
 import random
 
-
-class enemy():
-    def __init__(self, screen, delayTime,color, width, height):
+class enemy:
+    def __init__(self, screen,color, width, height):
         self.screen = screen
-        self.delayTime = delayTime
+        self.color = color
+        self.width = width
+        self.height = height
 
-        enemy = pygame.image.load("enemy.png")
+        self.image = pygame.image.load("enemy.png")
+        
+        spawn = random.randrange(0,2)
+        if spawn == 0:    
+            self.x = -self.width
+        else:
+            self.x = screen.get_width()
+        self.y = random.randrange(0,screen.get_height())
 
-    def display(self):
-        pygame.draw.rect(rect,(0,0,255))
+    def draw(self,screen):
+        screen.blit(self.image,(self.x,self.y))
