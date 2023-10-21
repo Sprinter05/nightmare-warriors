@@ -1,6 +1,7 @@
 # Example file showing a circle moving on screen
 import pygame
 import gun
+import enemigo
 
 # import manolo
 
@@ -13,8 +14,10 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
+x, y = pygame.mouse.get_pos()
+
 # manolo.init(screen)
-enemigo.init(screen, 3)
+#enemigo.init(screen, 3)
 # Define objects
 mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gRect, gun.gRect) ,gun.gWidth)
 
@@ -24,9 +27,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("white") # Clear Screen
+    screen.fill("black") # Clear Screen
     # Gun stuff
-	mira.rect = 
+    x, y = pygame.mouse.get_pos()
+    mira.rect = (x-(gun.gRect/2),y-(gun.gRect/2),gun.gRect,gun.gRect)
     mira.display()
     # Something
     # keys = pygame.key.get_pressed()

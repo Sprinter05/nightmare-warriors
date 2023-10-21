@@ -1,7 +1,7 @@
 import pygame
 
-gColor = pygame.Color(0,0,0)
-gRect = pygame.Rect(0,0,50,50)
+gColor = pygame.Color(255,255,100)
+gRect = 50
 gWidth = 2
 
 class Pointer():
