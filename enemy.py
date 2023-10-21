@@ -9,13 +9,14 @@ class enemy:
         self.height = height
         self.velocidad_x = 5
         self.velocidad_y = 5
-        self.speed = [3, 3]
+        self.speed = [30, 30]
 
         self.image = pygame.image.load("enemy.png")
         
         spawn = random.randrange(0,2)
+        print (spawn)
         if spawn == 0:
-            self.x = -self.width
+            self.x = -10
         else:
             self.x = screen.get_width()
         self.y = random.randrange(0,screen.get_height())
