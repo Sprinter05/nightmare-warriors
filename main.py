@@ -12,8 +12,6 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
-# manolo.init(screen)
-enemigo.init(3)
 # Define objects
 mira = gun.Pointer(screen, gun.gColor, gun.gRect,gun.gWidth)
 
