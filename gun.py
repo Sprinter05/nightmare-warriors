@@ -5,23 +5,15 @@ gSize = 25
 gWidth = 3
 
 class Pointer():
-    def __init__(self,screen,color,x,y,manx,many,size,width):
+    def __init__(self,screen,color,x,y,size,width):
         self.screen = screen
         self.color = color
         self.x = x
         self.y = y
-        self.manx = manx
-        self.many = many
         self.size = size
         self.width = width
         self.radius = 100
     def display(self):
-        if self.x-self.manx > self.radius or self.y-self.many < self.radius:
-            self.x -= self.radius
-            self.y -= self.radius
-        if self.x-self.manx < self.radius or self.y-self.many < self.radius:
-            self.x += self.radius
-            self.y += self.radius
         return pygame.draw.ellipse(self.screen,self.color,pygame.Rect(self.x,self.y,self.size,self.size),self.width)
     def getpos(self):
         return self.rect
