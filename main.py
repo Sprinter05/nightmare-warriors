@@ -1,5 +1,6 @@
 # Example file showing a circle moving on screen
 import pygame
+import gun
 # import manolo
 
 # pygame setup
@@ -13,6 +14,8 @@ deltaTime = 0
 
 # manolo.init(screen)
 enemigo.init(3)
+# Define objects
+mira = gun.Pointer(screen, pygame.Color(255,0,0), pygame.Rect(0,0,200,200),5)
 
 while running:
     # poll for events
@@ -20,10 +23,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("black")
-
+    screen.fill("black") # Clear Screen
+    # Gun stuff
+    mira.display()
+    # Something
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
 		# # player.move(0, screen)
