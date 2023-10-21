@@ -1,6 +1,5 @@
 # Example file showing a circle moving on screen
 import pygame
-import enemigo
 # import manolo
 
 # pygame setup
@@ -24,8 +23,6 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
-
-    pygame.draw.circle(screen, "red", player_pos, 40)
 
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
