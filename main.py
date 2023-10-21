@@ -4,6 +4,7 @@ import gun
 import player
 import math
 import enemy
+import random
 
 # pygame setup
 pygame.init()
@@ -83,11 +84,18 @@ while running:
     # Felipe
     for f in felipes:
       f.draw(manolo.pos[0],manolo.pos[1],screen)
-      if checkcol(manolo,f):
-         life -= 1
+      if checkcol(manolo, f):
+        life -= 1
+        #meter vergas eiqui
+        felipes.remove(f)
+        felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+        if random.randrange(0,5) == 0:
+          felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+
     if life <= 0:
       print("dead")
-      # meter vergas eiqui
+      pygame.quit()
+      break
     # Flip and deltaTime garbage
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
