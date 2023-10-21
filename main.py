@@ -13,6 +13,7 @@ running = True
 deltaTime = 0
 
 # manolo.init(screen)
+enemigo.init(3)
 
 while running:
     # poll for events
