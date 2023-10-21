@@ -1,7 +1,7 @@
 # Example file showing a circle moving on screen
 import pygame
 import gun
-import enemigo
+import player
 
 # import manolo
 
@@ -13,11 +13,11 @@ pygame.display.set_caption("Nightmare warriors")
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
+keys = pygame.key.get_pressed()
 
-# manolo.init(screen)
-#enemigo.init(screen, 3)
 # Define objects
 mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gSize, gun.gSize) ,gun.gWidth)
+manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
 
 while running:
     # poll for events
@@ -32,6 +32,14 @@ while running:
     mPosY -= gun.gSize/2
     mira.rect = (mPosX, mPosY, gun.gSize, gun.gSize)
     mira.display()
+    # Player stuff
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_a]:
+      manolo.pos[0] -= 300 * deltaTime
+    if keys[pygame.K_d]:
+      manolo.pos[0] += 300 * deltaTime
+    manolo.show()
+    
     # Something
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
