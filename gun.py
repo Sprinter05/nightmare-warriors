@@ -1,7 +1,7 @@
 import pygame
 
 gColor = pygame.Color(255,255,100)
-gRect = 50
+gSize = 50
 gWidth = 2
 
 class Pointer():

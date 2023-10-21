@@ -14,12 +14,10 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
-x, y = pygame.mouse.get_pos()
-
 # manolo.init(screen)
 #enemigo.init(screen, 3)
 # Define objects
-mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gRect, gun.gRect) ,gun.gWidth)
+mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gSize, gun.gSize) ,gun.gWidth)
 
 while running:
     # poll for events
@@ -29,8 +27,10 @@ while running:
             running = False
     screen.fill("black") # Clear Screen
     # Gun stuff
-    x, y = pygame.mouse.get_pos()
-    mira.rect = (x-(gun.gRect/2),y-(gun.gRect/2),gun.gRect,gun.gRect)
+    mPosX, mPosY = pygame.mouse.get_pos()
+    mPosX -= gun.gSize/2
+    mPosY -= gun.gSize/2
+    mira.rect = (mPosX, mPosY, gun.gSize, gun.gSize)
     mira.display()
     # Something
     # keys = pygame.key.get_pressed()
