@@ -12,8 +12,6 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
-# manolo.init(screen)
-enemigo.init(3)
 # Define objects
 mira = gun.Pointer(screen, gun.gColor, gun.gRect,gun.gWidth)
 
@@ -23,7 +21,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("black") # Clear Screen
+    screen.fill("white") # Clear Screen
     # Gun stuff
     mira.display()
     # Something
