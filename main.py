@@ -13,10 +13,13 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
+<<<<<<< HEAD
 # manolo.init(screen)
 enemigo.init(screen, 3)
+=======
+>>>>>>> 151608a36aed55f49e3fe55ceecca01c542fdb90
 # Define objects
-mira = gun.Pointer(screen, pygame.Color(255,0,0), pygame.Rect(0,0,200,200),5)
+mira = gun.Pointer(screen, gun.gColor, gun.gRect,gun.gWidth)
 
 while running:
     # poll for events
@@ -24,7 +27,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("black") # Clear Screen
+    screen.fill("white") # Clear Screen
     # Gun stuff
     mira.display()
     # Something
