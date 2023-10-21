@@ -16,7 +16,7 @@ running = True
 deltaTime = 0
 keys = pygame.key.get_pressed()
 # Time get
-delay = 50
+delay = 100
 lastShot = 0
 radius = 200
 
