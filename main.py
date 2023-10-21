@@ -20,18 +20,12 @@ mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gSize, gun.gSize) ,
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
 
 while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+    # Poll events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("black") # Clear Screen
-    # Gun stuff
-    mPosX, mPosY = pygame.mouse.get_pos()
-    mPosX -= gun.gSize/2
-    mPosY -= gun.gSize/2
-    mira.rect = (mPosX, mPosY, gun.gSize, gun.gSize)
-    mira.display()
+    # Clear screeen
+    screen.fill("black")
     # Player stuff
     keys = pygame.key.get_pressed()
     if keys[pygame.K_a]:
@@ -39,28 +33,13 @@ while running:
     if keys[pygame.K_d]:
       manolo.pos[0] += 300 * deltaTime
     manolo.show()
-    
-    # Something
-    # keys = pygame.key.get_pressed()
-    # if keys[pygame.K_w]:
-		# # player.move(0, screen)
-		# player_pos += (0, 10);
-    # if keys[pygame.K_s]:
-		# # manolo.move(1, screen)
-		# player_pos += (0, -10);
-    # if keys[pygame.K_a]:
-		# # manolo.move(3, screen)
-		# player_pos += (-10, 0);
-    # if keys[pygame.K_d]:
-		# # manolo.move(2, screen)
-		# player_pos += (10, 0);
-
-    # flip() the display to put your work on screen
+    # Gun stuff
+    mPosX, mPosY = pygame.mouse.get_pos()
+    mPosX -= gun.gSize/2
+    mPosY -= gun.gSize/2
+    mira.rect = (mPosX, mPosY, gun.gSize, gun.gSize)
+    mira.display()
+    # Flip and deltaTime garbage
     pygame.display.flip()
-
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
     deltaTime = clock.tick(60) / 1000
-
 pygame.quit()
