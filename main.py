@@ -3,8 +3,6 @@ import pygame
 import gun
 import player
 
-# import manolo
-
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
@@ -20,8 +18,8 @@ delay = 50
 lastShot = 0
 
 # Define objects
-mira = gun.Pointer(screen, gun.gColor, pygame.Rect(0, 0, gun.gSize, gun.gSize) ,gun.gWidth)
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
+mira = gun.Pointer(screen, gun.gColor, 0, 0, manolo.pos[0], manolo.pos[1], gun.gSize ,gun.gWidth)
 bullets = []
 
 while running:
@@ -41,9 +39,10 @@ while running:
     manolo.show()
     # Gun stuff
     mPosX, mPosY = pygame.mouse.get_pos()
-    mPosX -= gun.gSize/2
-    mPosY -= gun.gSize/2
-    mira.rect = (mPosX, mPosY, gun.gSize, gun.gSize)
+    mira.x = mPosX - gun.gSize/2
+    mira.y = mPosY - gun.gSize/2
+    mira.manx = manolo.pos[0]
+    mira.many = manolo.pos[1]
     mira.display()
     # Bullet stuff
     if (keys[pygame.K_SPACE] and (pygame.time.get_ticks() - lastShot > delay)):
