@@ -1,6 +1,5 @@
 # Example file showing a circle moving on screen
 import pygame
-import enemigo
 # import manolo
 
 # pygame setup
@@ -12,8 +11,6 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
-# manolo.init(screen)
-
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -23,8 +20,6 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("black")
-
-    pygame.draw.circle(screen, "red", player_pos, 40)
 
     # keys = pygame.key.get_pressed()
     # if keys[pygame.K_w]:
