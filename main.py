@@ -29,9 +29,6 @@ felipes = []
 for f in range(0,20):
   felipes.append(enemy.enemy(screen,(0,0,255),500,500))
 
-
-
-
 while running:
     # Poll events
     for event in pygame.event.get():
@@ -41,6 +38,7 @@ while running:
     screen.fill("black")
     # Update vars
     keys = pygame.key.get_pressed()
+    mouses = pygame.mouse.get_pressed()
     # Player stuff
     if keys[pygame.K_a]:
       manolo.pos[0] -= player.pvel * deltaTime
@@ -63,7 +61,7 @@ while running:
     # Check if gun out of radius
     mira.display()
     # Bullet stuff
-    if (keys[pygame.K_SPACE] and (pygame.time.get_ticks() - lastShot > delay)):
+    if (mouses[0] and (pygame.time.get_ticks() - lastShot > delay)):
        bullets.append(gun.Bullet(screen,manolo.pos[0]+manolo.size[0]/2, manolo.pos[1]+manolo.size[1]/2, mira.x, mira.y, 20 , 10))
        lastShot = pygame.time.get_ticks()
     for b in bullets:
