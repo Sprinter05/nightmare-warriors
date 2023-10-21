@@ -6,6 +6,7 @@ import math
 import enemy
 import random
 import corasondeemlon
+import deathscreen
 
 # pygame setup
 pygame.init()
@@ -120,10 +121,7 @@ while running:
           felipes.append(enemy.enemy(screen,(0,0,255),500,500))
 
     if life <= 0:
-      print("dead")
-      print("You killed ",kills," Felipes")
-      pygame.quit()
-      break
+      deathscreen.endgame()
     # Flip and deltaTime garbage
     vidas.draw()
     pygame.display.flip()
