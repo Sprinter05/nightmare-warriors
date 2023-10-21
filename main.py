@@ -121,7 +121,8 @@ while running:
           felipes.append(enemy.enemy(screen,(0,0,255),500,500))
 
     if life <= 0:
-      deathscreen.endgame()
+      deathscreen.endGame(screen,kills)
+      break
     # Flip and deltaTime garbage
     vidas.draw()
     pygame.display.flip()
