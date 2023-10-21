@@ -1,8 +1,8 @@
 # Example file showing a circle moving on screen
 import pygame
 
-ppos = [640,360]
-psize = [50,150]
+ppos = [640,650]
+psize = [32,32]
 pcolor="blue"
 pvel = 500
 

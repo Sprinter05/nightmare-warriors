@@ -22,6 +22,7 @@ radius = 200
 
 # Define objects
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
+manoloImg = pygame.image.load("./Manolo64.png")
 mira = gun.Pointer(screen, gun.gColor, 0, 0, gun.gSize ,gun.gWidth)
 bullets = []
 Felipe = enemy.enemy(screen,(0,0,255),500,500)
@@ -41,6 +42,7 @@ while running:
     if keys[pygame.K_d]:
       manolo.pos[0] += player.pvel * deltaTime
     manolo.show()
+    screen.blit(manoloImg, (manolo.pos[0]-manolo.size[0]/2,manolo.pos[1]-manolo.size[1]/2))
     # Gun stuff
     playx = manolo.pos[0]
     playy = manolo.pos[1]
