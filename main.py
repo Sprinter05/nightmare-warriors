@@ -16,7 +16,7 @@ pygame.display.set_caption("Nightmare warriors")
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
-life = 3
+life = 5
 keys = pygame.key.get_pressed()
 # Time get
 delay = 100
@@ -54,8 +54,11 @@ def checkhit(b,fel):
 while running:
     # Poll events
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+         if event.type == pygame.QUIT:
             running = False
+         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+               manolo.isJump = True
     # Clear screeen
     screen.fill("black")
     # Update vars
@@ -66,7 +69,9 @@ while running:
       manolo.pos[0] -= player.pvel * deltaTime
     if keys[pygame.K_d]:
       manolo.pos[0] += player.pvel * deltaTime
+    
     manolo.show()
+    manolo.jump()
     screen.blit(manoloImg, (manolo.pos[0]-manolo.size[0]/2,manolo.pos[1]-manolo.size[1]/2))
     # Gun stuff
     playx = manolo.pos[0]

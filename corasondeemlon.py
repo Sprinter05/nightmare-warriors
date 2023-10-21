@@ -3,7 +3,7 @@ import pygame
 class Vida:
     def __init__(self,screen):
         self.screen = screen
-        self.life=3
+        self.life=5
         self.x = 10
         self.y = 10
         self.image = pygame.image.load("pointed-heart.png")
