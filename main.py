@@ -11,7 +11,8 @@ import corasondeemlon
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Nightmare warriors")
-
+bgimg = pygame.image.load("background.png")
+bgimg = pygame.transform.scale(bgimg, (1280, 720))
 # Vars
 clock = pygame.time.Clock()
 running = True
@@ -57,7 +58,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     # Clear screeen
-    screen.fill("black")
+    rectImg = bgimg.get_rect()
+    rectImg = rectImg.move((0, 0))
+    screen.blit(bgimg, rectImg)
     # Update vars
     keys = pygame.key.get_pressed()
     mouses = pygame.mouse.get_pressed()
