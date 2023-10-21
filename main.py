@@ -5,6 +5,7 @@ import player
 import math
 import enemy
 import random
+import corasondeemlon
 
 # pygame setup
 pygame.init()
@@ -21,6 +22,7 @@ keys = pygame.key.get_pressed()
 delay = 100
 lastShot = 0
 radius = 200
+kills = 0
 
 # Define objects
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
@@ -30,6 +32,8 @@ bullets = []
 felipes = []
 for f in range(0,20):
   felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+vidas = corasondeemlon.Vida(screen)
+
 def checkcol(man,fel):
     #Collision
     hitbox = pygame.Rect(man.pos[0],man.pos[1],man.size[0],man.size[1])
@@ -87,6 +91,10 @@ while running:
            if checkhit(b,f):
               bullets.remove(b)
               felipes.remove(f)
+              felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+              if random.randrange(0,5) == 0:
+                felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+              kills += 1
               break
         if b.exist():
            b.show()
@@ -98,6 +106,7 @@ while running:
       f.draw(manolo.pos[0],manolo.pos[1],screen)
       if checkcol(manolo, f):
         life -= 1
+        vidas.hit()
         #meter vergas eiqui
         felipes.remove(f)
         felipes.append(enemy.enemy(screen,(0,0,255),500,500))
@@ -106,9 +115,11 @@ while running:
 
     if life <= 0:
       print("dead")
+      print("You killed ",kills," Felipes")
       pygame.quit()
       break
     # Flip and deltaTime garbage
+    vidas.draw()
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
 pygame.quit()
