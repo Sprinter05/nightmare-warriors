@@ -39,7 +39,7 @@ class enemy:
             self.x += random.randrange(1,5)
         if (self.y > playerY):
             self.y -= random.randrange(1,5)
-        if (self.y < playerX):
+        if (self.y < playerY):
             self.y += random.randrange(1,5)
         #update
         

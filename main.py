@@ -99,8 +99,9 @@ while running:
         if b.exist():
            b.show()
            b.move()
-        else:      
-           bullets.remove(b)
+        else:
+           if b in bullets:
+            bullets.remove(b)
     # Felipe
     for f in felipes:
       f.draw(manolo.pos[0],manolo.pos[1],screen)
