@@ -14,6 +14,7 @@ pygame.display.set_caption("Nightmare warriors")
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
+life = 3
 keys = pygame.key.get_pressed()
 # Time get
 delay = 100
@@ -28,6 +29,15 @@ bullets = []
 felipes = []
 for f in range(0,20):
   felipes.append(enemy.enemy(screen,(0,0,255),500,500))
+def checkcol(man,fel):
+    #Collision
+    hitbox = pygame.Rect(man.pos[0],man.pos[1],man.size[0],man.size[1])
+    enemy = pygame.Rect(fel.x,fel.y,32,32)
+    damage = hitbox.colliderect(enemy)
+    if damage:
+       return True
+    else:
+       return False
 
 while running:
     # Poll events
@@ -73,6 +83,11 @@ while running:
     # Felipe
     for f in felipes:
       f.draw(manolo.pos[0],manolo.pos[1],screen)
+      if checkcol(manolo,f):
+         life -= 1
+    if life <= 0:
+      print("dead")
+      # meter vergas eiqui
     # Flip and deltaTime garbage
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
