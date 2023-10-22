@@ -12,7 +12,7 @@ class enemy:
         #self.speed = [random.randrange(5,30),random.randrange(5,30)]
         self.wait = random.randrange(0, 100) * 20
 
-        self.image = pygame.image.load("enemy.png")
+        self.image = pygame.image.load("./media/enemy.png")
         
         spawn = random.randrange(0,3)
         if spawn == 0:

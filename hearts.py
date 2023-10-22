@@ -6,7 +6,7 @@ class Vida:
         self.life=5
         self.x = 10
         self.y = 10
-        self.image = pygame.image.load("pointed-heart.png")
+        self.image = pygame.image.load("./media/heart_1.png")
     def draw(self):
         offsetX = 0
         for i in range (0, self.life):

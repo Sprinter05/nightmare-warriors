@@ -3,7 +3,7 @@ import pygame
 def endGame(screen, kills):
     screen.fill((144, 12, 63))
     fuente = pygame.font.Font(None, 100)
-    image = pygame.image.load("skull.png")
+    image = pygame.image.load("./media/skull.png")
 
     text = "La has palmao"
     mensaje = fuente.render(text, 10, (255, 255, 255))

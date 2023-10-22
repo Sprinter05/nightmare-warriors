@@ -5,14 +5,14 @@ import player
 import math
 import enemy
 import random
-import corasondeemlon
+import hearts
 import deathscreen
 
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Nightmare warriors")
-bgimg = pygame.image.load("background.png")
+bgimg = pygame.image.load("./media/background.png")
 bgimg = pygame.transform.scale(bgimg, (1280, 720))
 # Vars
 clock = pygame.time.Clock()
@@ -28,13 +28,13 @@ kills = 0
 
 # Define objects
 manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
-manoloImg = pygame.image.load("./Manolo64.png")
+manoloImg = pygame.image.load("./media/manolo64.png")
 mira = gun.Pointer(screen, gun.gColor, 0, 0, gun.gSize ,gun.gWidth)
 bullets = []
 felipes = []
 for f in range(0,20):
   felipes.append(enemy.enemy(screen,(0,0,255),500,500))
-vidas = corasondeemlon.Vida(screen)
+vidas = hearts.Vida(screen)
 
 def checkcol(man,fel):
     #Collision

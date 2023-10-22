@@ -4,7 +4,7 @@ import pygame
 pygame.font.init() 
 my_font = pygame.font.SysFont('Ubuntu Mono', 30)
 # Logo
-logo = pygame.image.load("./Nightmare Warriors big.png")
+logo = pygame.image.load("./media/logo.png")
 logo = pygame.transform.scale(logo, (900, 78))
 # Init game
 pygame.init()
