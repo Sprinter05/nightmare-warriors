@@ -12,7 +12,7 @@ import deathscreen
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Nightmare warriors")
-bgimg = pygame.image.load("./media/background.png")
+bgimg = pygame.image.load("./media/background.jpg")
 bgimg = pygame.transform.scale(bgimg, (1280, 720))
 # Vars
 clock = pygame.time.Clock()
