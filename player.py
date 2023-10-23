@@ -1,10 +1,10 @@
 # Example file showing a circle moving on screen
 import pygame
+from vars import screen
 
-ppos = [640,650]
-psize = [32,32]
-pcolor="blue"
-pvel = 500
+# Define objects
+manoloImg = pygame.image.load("./media/manolo64.png")
+vel = 500
 
 # player class setup
 class Player():
@@ -16,7 +16,13 @@ class Player():
         self.isJump = False
         self.jumpCount = 10
     def show(self):
+        screen.blit(manoloImg,(self.pos[0]-self.size[0]/2,self.pos[1]-self.size[1]/2))
         return pygame.draw.rect(self.screen, self.color, pygame.Rect(self.pos[0], self.pos[1], self.size[0], 1))
+    def move(self,k,dt):
+        if k[pygame.K_a]:
+            self.pos[0] -= vel * dt
+        if k[pygame.K_d]:
+            self.pos[0] += vel * dt
     def jump(self):
         if self.isJump:
             if self.jumpCount >= -10:
@@ -28,3 +34,14 @@ class Player():
             else:
                 self.isJump = False
                 self.jumpCount = 10
+    def checkcol(self,fel):
+        hitbox = pygame.Rect(self.pos[0],self.pos[1],self.size[0],self.size[1])
+        enemy = pygame.Rect(fel.x,fel.y,32,32)
+        damage = hitbox.colliderect(enemy)
+        if damage:
+            return True
+        else:
+            return False
+
+# Define manolo
+manolo = Player(screen, [640,650], [32,32], "blue")

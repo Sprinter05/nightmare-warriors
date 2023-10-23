@@ -17,7 +17,7 @@ deltaTime = 0
 anim = True
 lastAnim = pygame.time.get_ticks()
 delay = 500
-# Loop until Space pressed
+# Loop until Space presseds
 while running:
     # Poll events
     for event in pygame.event.get():

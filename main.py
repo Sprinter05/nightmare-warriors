@@ -1,50 +1,31 @@
 # Example file showing a circle moving on screen
 import pygame
 import gun
-import player
+from player import manolo
 import math
 import enemy
 import random
-import hearts
 import deathscreen
+from vars import screen,mira,vidas,bullets,felipes,life,kills
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Nightmare warriors")
+# Import images
 bgimg = pygame.image.load("./media/background.jpg")
 bgimg = pygame.transform.scale(bgimg, (1280, 720))
-# Vars
+# pygame clock shenaningans
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
-life = 5
-keys = pygame.key.get_pressed()
-# Time get
-delay = 100
+# Set up vars for crosshair and bullets
+shootDelay = 100
 lastShot = 0
 radius = 200
-kills = 0
 
-# Define objects
-manolo = player.Player(screen, player.ppos, player.psize, player.pcolor)
-manoloImg = pygame.image.load("./media/manolo64.png")
-mira = gun.Pointer(screen, gun.gColor, 0, 0, gun.gSize ,gun.gWidth)
-bullets = []
-felipes = []
 for f in range(0,20):
   felipes.append(enemy.enemy(screen,(0,0,255),500,500))
-vidas = hearts.Vida(screen)
 
-def checkcol(man,fel):
-    #Collision
-    hitbox = pygame.Rect(man.pos[0],man.pos[1],man.size[0],man.size[1])
-    enemy = pygame.Rect(fel.x,fel.y,32,32)
-    damage = hitbox.colliderect(enemy)
-    if damage:
-       return True
-    else:
-       return False
 def checkhit(b,fel):
   enemy = pygame.Rect(fel.x,fel.y,32,32)
   bullet = pygame.Rect(b.x,b.y,b.size,b.size)
@@ -69,14 +50,9 @@ while running:
     keys = pygame.key.get_pressed()
     mouses = pygame.mouse.get_pressed()
     # Player stuff
-    if keys[pygame.K_a]:
-      manolo.pos[0] -= player.pvel * deltaTime
-    if keys[pygame.K_d]:
-      manolo.pos[0] += player.pvel * deltaTime
-    
     manolo.show()
+    manolo.move(keys,deltaTime)
     manolo.jump()
-    screen.blit(manoloImg, (manolo.pos[0]-manolo.size[0]/2,manolo.pos[1]-manolo.size[1]/2))
     # Gun stuff
     playx = manolo.pos[0]
     playy = manolo.pos[1]
@@ -92,7 +68,7 @@ while running:
     # Check if gun out of radius
     mira.display()
     # Bullet stuff
-    if (mouses[0] and (pygame.time.get_ticks() - lastShot > delay)):
+    if (mouses[0] and (pygame.time.get_ticks() - lastShot > shootDelay)):
        bullets.append(gun.Bullet(screen,manolo.pos[0]+manolo.size[0]/2, manolo.pos[1]+manolo.size[1]/2, mira.x, mira.y, 20 , 10))
        lastShot = pygame.time.get_ticks()
     for b in bullets:
@@ -114,7 +90,7 @@ while running:
     # Felipe
     for f in felipes:
       f.draw(manolo.pos[0],manolo.pos[1],screen)
-      if checkcol(manolo, f):
+      if manolo.checkcol(f):
         life -= 1
         vidas.hit()
         #meter vergas eiqui
