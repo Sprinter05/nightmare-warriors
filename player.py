@@ -5,9 +5,10 @@ import vars
 # Class for the player
 class Player():
     # Define class variables
-    def __init__(self,screen,pos,size,color):
+    def __init__(self,screen,x,y,size,color):
         self.screen = screen
-        self.pos = pos
+        self.x = x
+        self.y = y
         self.size = size
         self.color = color
         self.vel = 500
@@ -20,16 +21,16 @@ class Player():
         self.manoloImg = pygame.image.load("./media/manolo64.png")
     # Display player on the screen
     def show(self):
-        self.screen.blit(self.manoloImg,(self.pos[0]-self.size[0]/2,self.pos[1]-self.size[1]/2)) # Actual sprite
         # "Fake" square behind the sprite for collisions
-        return pygame.draw.rect(self.screen, self.color, pygame.Rect(self.pos[0], self.pos[1], self.size[0], 1))
+        pygame.draw.rect(self.screen, self.color, pygame.Rect(self.x, self.y, self.size, self.size))
+        self.screen.blit(self.manoloImg,(self.x-self.size/2,self.y-self.size/2)) # Actual sprite
     # Handle movement and jump with keys
     def move(self,k,dt):
         # Movement from left to right
         if k[pygame.K_a]:
-            self.pos[0] -= self.vel * dt
+            self.x -= self.vel * dt
         if k[pygame.K_d]:
-            self.pos[0] += self.vel * dt
+            self.x += self.vel * dt
         # Make the player able to jump if the Space key is being pressed
         if k[pygame.K_SPACE]:
             self.isJump = True
@@ -41,7 +42,7 @@ class Player():
                 neg = 1
                 if self.jumpCount < 0:
                     neg = -1
-                self.pos[1] -= self.jumpCount**2 * 0.5 * neg
+                self.y -= self.jumpCount**2 * 0.5 * neg
                 self.jumpCount -= 1
             else:
                 self.isJump = False
@@ -50,11 +51,11 @@ class Player():
     def shoot(self,buls,mira,mouses,BullObj):
         # Check Left mouse click and delay between bullets
         if (mouses[0] and (pygame.time.get_ticks() - self.lastShot > self.shootDelay)):
-            buls.append(BullObj(self.screen,self.pos[0]+self.size[0]/2, self.pos[1]+self.size[1]/2, mira.x, mira.y, 20 , 10)) # Add bullet to array
+            buls.append(BullObj(self.screen,self.x+self.size/2, self.y+self.size/2, mira.x, mira.y, 20 , 10)) # Add bullet to array
             self.lastShot = pygame.time.get_ticks() # Set latest shot
     # Check collisions between player and enemy
     def checkPlayerHit(self,fel):
-        hitbox = pygame.Rect(self.pos[0],self.pos[1],self.size[0],self.size[1])
+        hitbox = pygame.Rect(self.x,self.y,self.size,self.size)
         enemy = pygame.Rect(fel.x,fel.y,32,32)
         damage = hitbox.colliderect(enemy)
         if damage:
@@ -62,4 +63,4 @@ class Player():
         else:
             return False
 # Define objets
-manolo = Player(vars.screen, [640,650], [32,32], "blue") # Player
+manolo = Player(vars.screen, 640, 650, 32, "blue") # Player

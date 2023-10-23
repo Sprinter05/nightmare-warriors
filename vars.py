@@ -30,7 +30,7 @@ def killEnemy(buls,fels,scr,man,EnemyObj):
 # Function that handles enemies hitting the player
 def enemyHits(man,fels,scr,vidas,EnemyObj):
    for f in fels:
-      f.draw(man.pos[0],man.pos[1]) # Draw the enemy from the array
+      f.draw(man.x,man.y) # Draw the enemy from the array
       # Check collisions between player and enemies
       if man.checkPlayerHit(f):
         man.lifes -= 1

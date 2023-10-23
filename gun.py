@@ -17,8 +17,8 @@ class Pointer():
     # Display crosshair on the screen
     def display(self,man):
         mPosX, mPosY = pygame.mouse.get_pos()
-        playx = man.pos[0]
-        playy = man.pos[1]
+        playx = man.x
+        playy = man.y
         # Vector math to make the crosshair always be in a circumference around the player
         deltaX = mPosX - playx
         deltaY = mPosY - playy
@@ -26,8 +26,8 @@ class Pointer():
         mVect = pygame.Vector2(self.radius*math.cos(mAng), self.radius*math.sin(mAng))
         playerP = pygame.Vector2(playx, playy)
         # Modify crosshair position according to the calculated vector
-        self.x = playerP.x + mVect.x + man.size[0]/2
-        self.y = playerP.y + mVect.y + man.size[1]/2
+        self.x = playerP.x + mVect.x + man.size/2
+        self.y = playerP.y + mVect.y + man.size/2
         # Draw the crosshair on the screen
         return pygame.draw.ellipse(self.screen,self.color,pygame.Rect(self.x,self.y,self.size,self.size),self.width)
 # Class for the bullet that the player shoots
