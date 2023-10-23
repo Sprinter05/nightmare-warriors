@@ -31,7 +31,7 @@ while running:
     # Run player functions
     player.manolo.show()
     player.manolo.move(keys,deltaTime)
-    player.manolo.shoot(gun.bullets, gun.mira, mouses)
+    player.manolo.shoot(gun.bullets, gun.mira, mouses, gun.Bullet)
     player.manolo.jump()
     # Display crosshair
     gun.mira.display(player.manolo)

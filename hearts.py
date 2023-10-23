@@ -1,6 +1,6 @@
 import pygame
-from vars import screen
-from player import manolo
+import player
+import vars
 
 class Vida:
     def __init__(self,screen,life):
@@ -17,5 +17,5 @@ class Vida:
     def hit(self):
         self.life -= 1
 # Define object
-vidas = Vida(screen,manolo.lifes)
+vidas = Vida(vars.screen,player.manolo.lifes)
         

@@ -1,6 +1,6 @@
 import pygame
 import random
-from vars import screen
+import vars
 
 class Enemy():
     def __init__(self, screen, color, width, height):
@@ -39,4 +39,4 @@ class Enemy():
 # Define objects
 felipes = []
 for f in range(0,20):
-  felipes.append(Enemy(screen,(0,0,255),500,500))
+  felipes.append(Enemy(vars.screen,(0,0,255),500,500))

@@ -1,6 +1,5 @@
 import pygame
-from vars import screen
-from gun import Bullet
+import vars
 
 # player class setup
 class Player():
@@ -38,9 +37,9 @@ class Player():
             else:
                 self.isJump = False
                 self.jumpCount = 10
-    def shoot(self,buls,mira,mouses):
+    def shoot(self,buls,mira,mouses,BullObj):
         if (mouses[0] and (pygame.time.get_ticks() - self.lastShot > self.shootDelay)):
-            buls.append(Bullet(self.screen,self.pos[0]+self.size[0]/2, self.pos[1]+self.size[1]/2, mira.x, mira.y, 20 , 10))
+            buls.append(BullObj(self.screen,self.pos[0]+self.size[0]/2, self.pos[1]+self.size[1]/2, mira.x, mira.y, 20 , 10))
             self.lastShot = pygame.time.get_ticks()
     def checkcol(self,fel):
         hitbox = pygame.Rect(self.pos[0],self.pos[1],self.size[0],self.size[1])
@@ -51,4 +50,4 @@ class Player():
         else:
             return False
 # Define manolo
-manolo = Player(screen, [640,650], [32,32], "blue")
+manolo = Player(vars.screen, [640,650], [32,32], "blue")

@@ -1,6 +1,6 @@
 import pygame
 import math
-from vars import screen
+import vars
 
 class Pointer():
     def __init__(self,screen,color,x,y,size,width):
@@ -53,5 +53,5 @@ class Bullet():
         else:
             return False
 # Define crosshair object
-mira = Pointer(screen, pygame.Color(255,255,255), 0, 0, 25 , 3)
+mira = Pointer(vars.screen, pygame.Color(255,255,255), 0, 0, 25 , 3)
 bullets = []
