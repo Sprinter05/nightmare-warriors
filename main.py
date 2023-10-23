@@ -1,12 +1,13 @@
 # Import everything necessary
 import pygame
 from player import manolo
-from gun import mira
+from gun import mira, bullets
 from hearts import vidas
 import enemy
+from enemy import felipes
 import random
 import deathscreen
-from vars import screen,bullets,felipes,kills # super temporal
+from vars import screen # super temporal
 
 # pygame setup
 pygame.init()
@@ -17,9 +18,6 @@ clock = pygame.time.Clock()
 running = True
 deltaTime = 0
 
-for f in range(0,20):
-  felipes.append(enemy.enemy(screen,(0,0,255),500,500))
-
 # Game functions
 def killEnemy(buls,fels,scr,man):
    for b in buls:
@@ -27,9 +25,9 @@ def killEnemy(buls,fels,scr,man):
            if b.checkhit(f):
               buls.remove(b)
               fels.remove(f)
-              fels.append(enemy.enemy(scr,(0,0,255),500,500))
+              fels.append(enemy.Enemy(scr,(0,0,255),500,500))
               if random.randrange(0,5) == 0:
-                fels.append(enemy.enemy(scr,(0,0,255),500,500))
+                fels.append(enemy.Enemy(scr,(0,0,255),500,500))
               man.kills += 1
               break
         if b.exist():
@@ -40,15 +38,14 @@ def killEnemy(buls,fels,scr,man):
             buls.remove(b)
 def endlessWave(man,fels,scr,vidas):
    for f in fels:
-      f.draw(man.pos[0],man.pos[1],scr)
+      f.draw(man.pos[0],man.pos[1])
       if manolo.checkcol(f):
         man.lifes -= 1
         vidas.hit()
         fels.remove(f)
-        fels.append(enemy.enemy(scr,(0,0,255),500,500))
+        fels.append(enemy.Enemy(scr,(0,0,255),500,500))
         if random.randrange(0,5) == 0:
-          fels.append(enemy.enemy(scr,(0,0,255),500,500))
-
+          fels.append(enemy.Enemy(scr,(0,0,255),500,500))
 # Main event
 while running:
     # Poll events
@@ -67,14 +64,16 @@ while running:
     manolo.jump()
     # Display crosshair
     mira.display(manolo)
+    # Display lifes
+    vidas.draw()
     # Enemy stuff
     killEnemy(bullets,felipes,screen,manolo)
     endlessWave(manolo,felipes,screen,vidas)
+    # Triger death if dead
     if manolo.lifes <= 0:
       deathscreen.endGame(screen,manolo.kills)
       break
     # Flip and deltaTime garbage
-    vidas.draw()
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
 pygame.quit()

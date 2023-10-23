@@ -18,7 +18,7 @@ class Player():
         self.kills = 0
         self.manoloImg = pygame.image.load("./media/manolo64.png")
     def show(self):
-        screen.blit(self.manoloImg,(self.pos[0]-self.size[0]/2,self.pos[1]-self.size[1]/2))
+        self.screen.blit(self.manoloImg,(self.pos[0]-self.size[0]/2,self.pos[1]-self.size[1]/2))
         return pygame.draw.rect(self.screen, self.color, pygame.Rect(self.pos[0], self.pos[1], self.size[0], 1))
     def move(self,k,dt):
         if k[pygame.K_a]:
@@ -40,7 +40,7 @@ class Player():
                 self.jumpCount = 10
     def shoot(self,buls,mira,mouses):
         if (mouses[0] and (pygame.time.get_ticks() - self.lastShot > self.shootDelay)):
-            buls.append(Bullet(screen,self.pos[0]+self.size[0]/2, self.pos[1]+self.size[1]/2, mira.x, mira.y, 20 , 10))
+            buls.append(Bullet(self.screen,self.pos[0]+self.size[0]/2, self.pos[1]+self.size[1]/2, mira.x, mira.y, 20 , 10))
             self.lastShot = pygame.time.get_ticks()
     def checkcol(self,fel):
         hitbox = pygame.Rect(self.pos[0],self.pos[1],self.size[0],self.size[1])

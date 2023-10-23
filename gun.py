@@ -54,3 +54,4 @@ class Bullet():
             return False
 # Define crosshair object
 mira = Pointer(screen, pygame.Color(255,255,255), 0, 0, 25 , 3)
+bullets = []
