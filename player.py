@@ -14,6 +14,8 @@ class Player():
         self.jumpCount = 10
         self.lastShot = 0
         self.shootDelay = 100
+        self.lifes = 5
+        self.kills = 0
         self.manoloImg = pygame.image.load("./media/manolo64.png")
     def show(self):
         screen.blit(self.manoloImg,(self.pos[0]-self.size[0]/2,self.pos[1]-self.size[1]/2))

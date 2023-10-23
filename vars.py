@@ -1,11 +1,8 @@
 import pygame
-import hearts
 
 # Define screen
 screen = pygame.display.set_mode((1280, 720))
-# Define objects
-vidas = hearts.Vida(screen)
-life = 5
+# Define game variables
 kills = 0
 bullets = []
 felipes = []
