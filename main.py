@@ -38,8 +38,8 @@ while running:
     # Display lifes
     hearts.vidas.draw()
     # Enemy stuff
-    vars.killEnemy(gun.bullets,enemy.felipes,vars.screen,player.manolo,enemy.Enemy)
-    vars.endlessWave(player.manolo,enemy.felipes,vars.screen,hearts.vidas,enemy.Enemy)
+    vars.killEnemy(gun.bullets,enemy.felipes,vars.screen,player.manolo,enemy.Felipe)
+    vars.endlessWave(player.manolo,enemy.felipes,vars.screen,hearts.vidas,enemy.Felipe)
     # Triger death if dead
     if player.manolo.lifes <= 0:
       deathscreen.endGame(vars.screen,player.manolo.kills)
