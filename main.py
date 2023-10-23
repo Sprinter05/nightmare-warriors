@@ -1,13 +1,13 @@
-# Import everything necessary
+# Import libraries
 import pygame
-from player import manolo
-from gun import mira, bullets
-from hearts import vidas
+# Import object files
+import player
 import enemy
-from enemy import felipes
-import random
+import gun
+import hearts
+# Import others
 import deathscreen
-from vars import screen # super temporal
+import vars
 
 # pygame setup
 pygame.init()
@@ -17,35 +17,6 @@ bgimg = pygame.image.load("./media/background.jpg")
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
-
-# Game functions
-def killEnemy(buls,fels,scr,man):
-   for b in buls:
-        for f in fels:
-           if b.checkhit(f):
-              buls.remove(b)
-              fels.remove(f)
-              fels.append(enemy.Enemy(scr,(0,0,255),500,500))
-              if random.randrange(0,5) == 0:
-                fels.append(enemy.Enemy(scr,(0,0,255),500,500))
-              man.kills += 1
-              break
-        if b.exist():
-           b.show()
-           b.move()
-        else:
-           if b in buls:
-            buls.remove(b)
-def endlessWave(man,fels,scr,vidas):
-   for f in fels:
-      f.draw(man.pos[0],man.pos[1])
-      if manolo.checkcol(f):
-        man.lifes -= 1
-        vidas.hit()
-        fels.remove(f)
-        fels.append(enemy.Enemy(scr,(0,0,255),500,500))
-        if random.randrange(0,5) == 0:
-          fels.append(enemy.Enemy(scr,(0,0,255),500,500))
 # Main event
 while running:
     # Poll events
@@ -53,25 +24,25 @@ while running:
          if event.type == pygame.QUIT:
             running = False
     # Clear screeen
-    screen.blit(bgimg, (0,0))
+    vars.screen.blit(bgimg, (0,0))
     # Update inputs
     keys = pygame.key.get_pressed()
     mouses = pygame.mouse.get_pressed()
     # Run player functions
-    manolo.show()
-    manolo.move(keys,deltaTime)
-    manolo.shoot(bullets, mira, mouses)
-    manolo.jump()
+    player.manolo.show()
+    player.manolo.move(keys,deltaTime)
+    player.manolo.shoot(gun.bullets, gun.mira, mouses)
+    player.manolo.jump()
     # Display crosshair
-    mira.display(manolo)
+    gun.mira.display(player.manolo)
     # Display lifes
-    vidas.draw()
+    hearts.vidas.draw()
     # Enemy stuff
-    killEnemy(bullets,felipes,screen,manolo)
-    endlessWave(manolo,felipes,screen,vidas)
+    vars.killEnemy(gun.bullets,enemy.felipes,vars.screen,player.manolo,enemy.Enemy)
+    vars.endlessWave(player.manolo,enemy.felipes,vars.screen,hearts.vidas,enemy.Enemy)
     # Triger death if dead
-    if manolo.lifes <= 0:
-      deathscreen.endGame(screen,manolo.kills)
+    if player.manolo.lifes <= 0:
+      deathscreen.endGame(vars.screen,player.manolo.kills)
       break
     # Flip and deltaTime garbage
     pygame.display.flip()
