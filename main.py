@@ -9,23 +9,23 @@ import hearts
 import deathscreen
 import vars
 
-# pygame setup
+# Pygame setup and load images
 pygame.init()
 pygame.display.set_caption("Nightmare warriors")
 bgimg = pygame.image.load("./media/background.jpg")
-# pygame clock shenaningans
+# Pygame clock and deltaTime shenaningans
 clock = pygame.time.Clock()
 running = True
 deltaTime = 0
-# Main event
+# Main loop
 while running:
-    # Poll events
+    # Poll quit event
     for event in pygame.event.get():
          if event.type == pygame.QUIT:
             running = False
-    # Clear screeen
+    # Clear screeen so that frames are clean
     vars.screen.blit(bgimg, (0,0))
-    # Update inputs
+    # Update input arrays
     keys = pygame.key.get_pressed()
     mouses = pygame.mouse.get_pressed()
     # Run player functions
@@ -33,18 +33,18 @@ while running:
     player.manolo.move(keys,deltaTime)
     player.manolo.shoot(gun.bullets, gun.mira, mouses, gun.Bullet)
     player.manolo.jump()
-    # Display crosshair
+    # Run crosshair functions
     gun.mira.display(player.manolo)
-    # Display lifes
+    # Run hearts on the screen functions
     hearts.vidas.draw()
-    # Enemy stuff
-    vars.killEnemy(gun.bullets,enemy.felipes,vars.screen,player.manolo,enemy.Felipe)
-    vars.endlessWave(player.manolo,enemy.felipes,vars.screen,hearts.vidas,enemy.Felipe)
-    # Triger death if dead
+    # Run different game functions
+    vars.killEnemy(gun.bullets,enemy.felipes,vars.screen,player.manolo,enemy.Felipe) # Enemy is killed function
+    vars.enemyHits(player.manolo,enemy.felipes,vars.screen,hearts.vidas,enemy.Felipe) # Player is hit function
+    # Trigger death if dead
     if player.manolo.lifes <= 0:
       deathscreen.endGame(vars.screen,player.manolo.kills)
-      break
-    # Flip and deltaTime garbage
+      break # Avoids errors on close
+    # Flip and deltaTime garbage, also clock stuff
     pygame.display.flip()
     deltaTime = clock.tick(60) / 1000
 pygame.quit()
