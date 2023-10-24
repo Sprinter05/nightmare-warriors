@@ -16,7 +16,6 @@ class Felipe():
         self.wait = random.randrange(0, 100) * 20
         self.image = pygame.image.load("./media/enemy.png")
     # Spawn in a random part of the screen through "random" library
-    def spawn(self):
         spawn = random.randrange(0,3)
         if spawn == 0:
             self.x = -10
